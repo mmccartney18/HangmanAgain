@@ -1,0 +1,111 @@
+
+<html>
+<head>
+	<title>My HangMan game</title>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+	<script src="script.js"></script>
+	<script src="bollywoodList.js"></script>
+	<script src="hollywoodList.js"></script>
+	<script src="authorList.js"></script>
+	<script src="placeList.js"></script>
+	<script src="sportPersonList.js"></script>
+	<!-- <script src="brandList.js"></script>
+	<script src="inventionList.js"></script> -->
+	<script src="jquery-1.11.2.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	   
+	<div id="wrapper">
+	<div id="header"><img src="images/headerAlt2.png" style="height:10%;width:100%"> </div>
+	<div id="content">
+		<span id="bestStreak" class="streak">Best Streak:<span id="best">0</span></span>
+		<span id="currStreak" class="streak">Current streak:<span id="current">0</span></span>
+
+		 <div id="game_area">
+			<div id="chanceDiagram">
+				<div id="cartoon"> <img src="images/cartoon_1.png" style="height:23%"> </div>
+			</div>
+			
+			<div id="play_area">
+				<span id="wrong_choices">&nbsp;</span><br/>	
+				<p id="query"></p><br/>
+				
+			</div>
+			
+		</div> 
+		
+	</div>
+	
+	<div id="footer">
+			<button type="button" id="play_again" onclick="playAgain()" value="Play Again">Skip</button><br>
+	</div>
+		
+	</div>
+	
+	<script>
+		if(localStorage.getItem("bestS") == null){
+			document.getElementById('best').innerHTML = 0;
+		}
+		else{
+			document.getElementById('best').innerHTML = localStorage.getItem("bestS");
+		}
+		for (keys = 65; keys <= 90; keys++){
+			var key = document.createElement("button");
+			key.setAttribute("type","button");
+			key.setAttribute("value","&#"+keys);
+			key.setAttribute("class","keys");
+			key.setAttribute("onclick","registerEnteredKey(this)");
+			key.innerHTML = String.fromCharCode(keys);
+			
+			var foot = document.getElementById("footer");
+			foot.appendChild(key);
+		}
+		var key = document.createElement("br");
+		var foot = document.getElementById("footer");
+		foot.appendChild(key);
+		for (keys = 48; keys <= 57; keys++){
+			var key = document.createElement("button");
+			key.setAttribute("type","button");
+			key.setAttribute("value","&#"+keys);
+			key.setAttribute("class","keys");
+			key.setAttribute("onclick","registerEnteredKey(this)");
+			key.innerHTML = String.fromCharCode(keys);
+			
+			var foot = document.getElementById("footer");
+			foot.appendChild(key);
+		}
+		
+		var queryString = new Array();
+		var query = window.location.search.split('?')[1];
+		var cat = query.split('=')[1];
+		
+		if (cat == "1"){
+			bollywoodList();
+		}
+		if (cat == "2"){
+			hollywoodList();
+		}
+		if (cat == "3"){
+			sportPersonList();
+		}
+		if (cat == "4"){
+			placeList();
+		}
+		if (cat == "5"){
+			authorList();
+		}
+		if (cat == "6"){
+			brandList();
+		}
+		if (cat == "7"){
+			inventionList();
+		}
+	</script>
+	
+	
+	
+	
+	
+</body>
+</html>
