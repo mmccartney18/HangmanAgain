@@ -21,9 +21,7 @@ var my_media;
 var playAudio = function(audioID) {
 	var audioElement = document.getElementById(audioID);
 	var url = audioElement.getAttribute('src');
-	if(my_media){
-		my_media.release();
-	}
+	
 	my_media = new Media(url,
 			// success callback
 			 function () { my_media.release(); },
@@ -496,6 +494,9 @@ var compare=function(word,enteredKey,ran) {
 					case 5:
 						playAudio("wrongAnswerComplete");
 						// document.getElementById("wrong_choices5").innerHTML = enteredKey;
+						while (document.getElementById("cartoon").firstChild){
+							document.getElementById("cartoon").removeChild(document.getElementById("cartoon").firstChild);
+						}
 						var x = document.createElement("IMG");
 						x.setAttribute("src", "images/animation.gif");
 						x.setAttribute("style", "height:15%");
@@ -581,7 +582,6 @@ function playAgain(){
 	// document.getElementsByClassName('wrong_choices').innerHTML = "&nbsp;";
 	for (var wc=1;wc<6;wc++){
 		document.getElementById('wrong_choices'+wc).innerHTML = "";
-		document.getElementsByClassName('wrong_choices')[wc-1].innerHTML = "";
 	}
 	document.getElementById('wrong_choices1').innerHTML = "&nbsp;";
 	document.getElementById('cartoon').innerHTML = "";
