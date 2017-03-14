@@ -35,7 +35,7 @@ var playAudio = function(audioID) {
 var main=function(incompleteWord,completeWord) {
 	// var enteredKey;
 	// playAudio("playAgainAudio");
-	playAudio("switchFlick");
+	// playAudio("switchFlick");
 	ran=returnRandom();
 	// document.getElementById('query').innerHTML = incompleteWord[ran];
 	wordLength = incompleteWord[ran].length;
