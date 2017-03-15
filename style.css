@@ -337,27 +337,27 @@ animation-duration: 2s;
 
 .shake0{
 	display:inline-block;transform-origin:center center;
-	transform:translate(0%, 0%) rotate(0deg)
+	-webkit-transform:translate(0%, 0%) rotate(0deg)
 }
 .shake1{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(5%, -5%) rotate(.5deg)
+	-webkit-transform:translate(5%, -5%) rotate(.5deg)
 }
 .shake2{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(-5%, -5%) rotate(-.5deg)
+	-webkit-transform:translate(-5%, -5%) rotate(-.5deg)
 }
 .shake3{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(-5%, 5%) rotate(-.5deg)
+	-webkit-transform:translate(-5%, 5%) rotate(-.5deg)
 }
 .shake4{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(5%, 5%) rotate(.5deg)
+	-webkit-transform:translate(5%, 5%) rotate(.5deg)
 }
 .shake{
 	/* -webkit-animation-name:shake;-webkit-animation-duration:100ms; */
@@ -371,27 +371,27 @@ animation-duration: 2s;
 .shake-slow0{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(0%, 0%) rotate(0deg)
+	-webkit-transform:translate(0%, 0%) rotate(0deg)
 }
 .shake-slow1{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(7%, -7%) rotate(-3.5deg)
+	-webkit-transform:translate(7%, -7%) rotate(-3.5deg)
 }
 .shake-slow2{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(7%, -7%) rotate(3.5deg)
+	-webkit-transform:translate(7%, -7%) rotate(3.5deg)
 }
 .shake-slow3{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(-7%, -7%) rotate(3.5deg)
+	-webkit-transform:translate(-7%, -7%) rotate(3.5deg)
 }
 .shake-slow4{
 	display:inline-block;transform-origin:center center;
 	animation-timing-function:ease-in-out;
-	transform:translate(-7%, 7%) rotate(-3.5deg)
+	-webkit-transform:translate(-7%, 7%) rotate(-3.5deg)
 }
 
 /* {2%{transform:translate(5px, -8px) rotate(.5deg)}
