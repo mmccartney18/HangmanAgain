@@ -781,7 +781,7 @@ function playAgain(){
 }
 
 function registerEnteredKey(keyEntered){
-	keyEntered.setAttribute("style","transition-timing-function:ease-in;transition:0.1s;transform:translateX(0%) translateY(-25%);");
+	keyEntered.setAttribute("style","-webkit-transition-timing-function:ease-in;-webkit-transition:0.1s;-webkit-transform:translateX(0%) translateY(-25%);");
 	// playAudio("keyPressAudio");
 	setTimeout(function(){
 		keyEntered.setAttribute("style","font-size: 1.4em;");
