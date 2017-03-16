@@ -3,7 +3,7 @@ function bollywoodList(){
 	list.push({incompWord: "A_A_ A__A_ A___O_Y",
 		compWord: "AMAR AKBAR ANTHONY"});
 		
-	list.push({incompWord: "O__E U_O_ _ _I_E I_ _U_B__",
+	list.push({incompWord: "O__E U_O_ _ _I_E I_ _U_B_I",
 		compWord: "ONCE UPON A TIME IN MUMBAI"});
 	
 	list.push({incompWord: "_U_ _I_ _E __U_E _A_A_",

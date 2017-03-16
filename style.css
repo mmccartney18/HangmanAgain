@@ -55,7 +55,7 @@ img, embed, object, video {
 	font-weight: 700;
 	color: aliceblue;
 	text-align: center;
-	letter-spacing: 8vw;
+	/* letter-spacing: 8vw; */
 	height: 9%;
 	padding-top: 1%;
 	/* background-color: #6622CC; */

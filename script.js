@@ -428,6 +428,10 @@ var compare=function(word,enteredKey,ran) {
 		//if all letters are matched
 		else {
 			playAudio("correctAnswerComplete");
+			var keyElem = document.getElementsByClassName("keys");
+			for(var keyEle=0;keyEle<keyElem.length;keyEle++){
+				keyElem[keyEle].disabled = true;
+			}
 			// document.getElementById('query').innerHTML = word;
 			var querySpanArea = document.getElementById("queryArea");
 			while(querySpanArea.firstChild){
@@ -495,6 +499,11 @@ var compare=function(word,enteredKey,ran) {
 				pAgain.classList.add("shake-slow0");
 			},450);
 			
+			var keyElem = document.getElementsByClassName("keys");
+			for(var keyEle=0;keyEle<keyElem.length;keyEle++){
+				keyElem[keyEle].disabled = true;
+			}
+			
 			$("<div/>", {
 					id: "correctState",
 					text: "Hurray!!!You are correct",
@@ -511,7 +520,7 @@ var compare=function(word,enteredKey,ran) {
 				function animateState(){
 					setTimeout(function(){
 						t -= 1;
-						h += 0.3;
+						h += 0.2;
 						document.getElementById("correctState").setAttribute("style","color:#ffffff;margin-top:"+ t + "px;"+"font-family: myFirstFont;font-size:"+h+"px");
 						time += 11;
 						if (time < 1750){

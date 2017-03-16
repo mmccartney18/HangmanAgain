@@ -29,6 +29,11 @@
 	</div>
 	
 	<script>
+		var headEle = document.getElementById("header");
+		var wrapEle = document.getElementById("wrapper");
+		var wrapWidth = wrapEle.offsetWidth;
+		var lettWidth = 0.08 * wrapWidth;
+		headEle.setAttribute("style","letter-spacing:"+lettWidth+"px");
 	 function categoryChange(sel){
 		<!-- playAudio("switchFlick"); -->
 		var catSelected = sel.value;
