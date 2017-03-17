@@ -22,7 +22,7 @@ var playAudio = function(audioID) {
 	var audioElement = document.getElementById(audioID);
 	var url = audioElement.getAttribute('src');
 	
-	my_media = new Media(url,
+	my_media = new Audio(url,
 			// success callback
 			 function () { my_media.release(); },
 			// error callback
@@ -39,24 +39,66 @@ var main=function(incompleteWord,completeWord) {
 	ran=returnRandom();
 	// document.getElementById('query').innerHTML = incompleteWord[ran];
 	wordLength = incompleteWord[ran].length;
+	wordNum = 1;
+	space = 0;
+	spaceIndex = [];
 	for (var qs=0;qs<wordLength;qs++){
-		var querySpan = document.createElement("span");
-		querySpan.setAttribute("class","query");
-		querySpan.setAttribute("id","query"+qs);
-		querySpan.innerHTML = incompleteWord[ran][qs];
-		
-		var queryAreaElem = document.getElementById("queryArea");
-		queryAreaElem.appendChild(querySpan);
-		
-		var querySpanDup = document.createElement("span");
-		querySpanDup.setAttribute("class","queryDup");
-		querySpanDup.setAttribute("id","queryDup"+qs);
-		querySpanDup.setAttribute("style","visibility:hidden");
-		querySpanDup.innerHTML = completeWord[ran][qs];
-		
-		var queryAreaElem = document.getElementById("queryAreaDup");
-		queryAreaElem.appendChild(querySpanDup);
+		if (completeWord[ran][qs] == " "){
+			spaceIndex[space] = qs;
+			space++;
+			wordNum++;
+		}
 	}
+	spaceIndex[space] = wordLength;
+	if(space >= 0){
+		for (var s=0;s<wordNum;s++){
+			// while (wordNum < space+1){
+				var wordSpan = document.createElement("span");
+				wordSpan.setAttribute("class","queryWord");
+				wordSpan.setAttribute("id","queryWord"+s);
+				// wordSpan.setAttribute("display","inline-block");
+				var queryAreaElem = document.getElementById("queryArea");
+				queryAreaElem.appendChild(wordSpan);
+				
+				var wordSpanDup = document.createElement("span");
+				wordSpanDup.setAttribute("class","queryWordDup");
+				wordSpanDup.setAttribute("id","queryWordDup"+s);
+				// wordSpanDup.setAttribute("display","inline-block");
+				var queryAreaElem = document.getElementById("queryAreaDup");
+				queryAreaElem.appendChild(wordSpanDup);
+				
+				if(s == 0){
+					p = 0;
+				}
+				else{
+					p = spaceIndex[s-1];
+				}
+				for (var sI=p;sI<spaceIndex[s];sI++){
+					var querySpan = document.createElement("span");
+					querySpan.setAttribute("class","query");
+					querySpan.setAttribute("id","query"+sI);
+					querySpan.innerHTML = incompleteWord[ran][sI];
+					if(incompleteWord[ran][sI] == " "){
+						querySpan.innerHTML = "&nbsp;"
+					}
+					
+					var wordSpanElem = document.getElementById("queryWord"+s);
+					wordSpanElem.appendChild(querySpan);
+					
+					var querySpanDup = document.createElement("span");
+					querySpanDup.setAttribute("class","queryDup");
+					querySpanDup.setAttribute("id","queryDup"+sI);
+					querySpanDup.setAttribute("style","visibility:hidden");
+					querySpanDup.innerHTML = completeWord[ran][sI];
+					if(completeWord[ran][sI] == " "){
+						querySpanDup.innerHTML = "&nbsp;"
+					}
+					
+					var wordSpanElem = document.getElementById("queryWordDup"+s);
+					wordSpanElem.appendChild(querySpanDup);
+				}
+			}
+		}
 	
 	for (var i=0;i<incompleteWord[ran].length;i++){
 		charIncompleteArray[i]=incompleteWord[ran][i];
@@ -113,23 +155,66 @@ var resetFunc = function(){
 		querySpanAreaDup.removeChild(querySpanAreaDup.firstChild);
 	}
 	wordLength = completeWord[ran].length;
+	wordNum = 1;
+	space = 0;
+	spaceIndex = [];
 	for (var qs=0;qs<wordLength;qs++){
-		var querySpan = document.createElement("span");
-		querySpan.setAttribute("class","query");
-		querySpan.setAttribute("id","query"+qs);
-		querySpan.innerHTML = incompleteWord[ran][qs];
-		
-		var queryAreaElem = document.getElementById("queryArea");
-		queryAreaElem.appendChild(querySpan);
-		
-		var querySpanDup = document.createElement("span");
-		querySpanDup.setAttribute("class","queryDup");
-		querySpanDup.setAttribute("id","queryDup"+qs);
-		querySpanDup.setAttribute("style","visibility:hidden");
-		querySpanDup.innerHTML = completeWord[ran][qs];
-		
-		var queryAreaElem = document.getElementById("queryAreaDup");
-		queryAreaElem.appendChild(querySpanDup);
+		if (completeWord[ran][qs] == " "){
+			spaceIndex[space] = qs;
+			space++;
+			wordNum++;
+		}
+	}
+	spaceIndex[space] = wordLength;
+	if(space >= 0){
+		for (var s=0;s<wordNum;s++){
+			// while (wordNum < space+1){
+				var wordSpan = document.createElement("span");
+				wordSpan.setAttribute("class","queryWord");
+				wordSpan.setAttribute("id","queryWord"+s);
+				// wordSpan.setAttribute("display","inline-block");
+				var queryAreaElem = document.getElementById("queryArea");
+				queryAreaElem.appendChild(wordSpan);
+				
+				var wordSpanDup = document.createElement("span");
+				wordSpanDup.setAttribute("class","queryWordDup");
+				wordSpanDup.setAttribute("id","queryWordDup"+s);
+				// wordSpanDup.setAttribute("display","inline-block");
+				var queryAreaElem = document.getElementById("queryAreaDup");
+				queryAreaElem.appendChild(wordSpanDup);
+				
+				if(s == 0){
+					p = 0;
+				}
+				else{
+					p = spaceIndex[s-1];
+				}
+				for (var sI=p;sI<spaceIndex[s];sI++){
+					var querySpan = document.createElement("span");
+					querySpan.setAttribute("class","query");
+					querySpan.setAttribute("id","query"+sI);
+					querySpan.innerHTML = incompleteWord[ran][sI];
+					if(incompleteWord[ran][sI] == " "){
+						querySpan.innerHTML = "&nbsp;"
+					}
+					
+					var wordSpanElem = document.getElementById("queryWord"+s);
+					wordSpanElem.appendChild(querySpan);
+					
+					var querySpanDup = document.createElement("span");
+					querySpanDup.setAttribute("class","queryDup");
+					querySpanDup.setAttribute("id","queryDup"+sI);
+					querySpanDup.setAttribute("style","visibility:hidden");
+					querySpanDup.innerHTML = completeWord[ran][sI];
+					if(completeWord[ran][sI] == " "){
+						querySpanDup.innerHTML = "&nbsp;"
+					}
+					
+					var wordSpanElem = document.getElementById("queryWordDup"+s);
+					wordSpanElem.appendChild(querySpanDup);
+				}
+			// }
+		}
 	}
 	for (var ch=0;ch<incompleteWord[ran].length;ch++){
 		charIncompleteArray[ch] = incompleteWord[ran][ch];
@@ -147,14 +232,6 @@ var compare=function(word,enteredKey,ran) {
 		var inWord;
 		var a = [];
 		incompleteArrayWord = "";
-		
-		// while (index<word.length){
-			// if (enteredKey === word[index]){
-				// charIncompleteArray[index] = enteredKey;
-				// changed = 1;
-			// } 						
-			// index = index+1;
-		// }	
 		
 		var as = 0;
 		var inde = 0;
@@ -203,12 +280,6 @@ var compare=function(word,enteredKey,ran) {
 				}
 			}
 			
-			// if (indic == indices.length){
-				// a += document.getElementById("query").innerHTML.substr(indices[indic-1]+1,word.length-indices[indic-1]-1);
-				// // a += "<span class='shake'>";
-				// // a += document.getElementById("query").innerHTML.substr(indices[indic],1);
-				// // a += "</span>";
-			// }
 		}
 		inWord = "";
 		for (var cia=0;cia<charIncompleteArray.length;cia++){
@@ -229,33 +300,54 @@ var compare=function(word,enteredKey,ran) {
 				while(querySpanArea.firstChild){
 					querySpanArea.removeChild(querySpanArea.firstChild);
 				}
-				
+			
 				matchedSpan = [];
 				ms = 0;
 				wordLength = completeWord[ran].length;
-				for (var qsA=0;qsA<wordLength;qsA++){
-					var querySpan = document.createElement("span");
-					querySpan.setAttribute("class","query");
-					querySpan.setAttribute("id","query"+qsA);
-					querySpan.innerHTML = a[qsA];
-					if (a[qsA] == enteredKey){
-						matchedSpan[ms++] = qsA;
-						// querySpan.classList.add("shake1");
-						// setTimeout(function(){
-							// querySpan.classList.remove("shake1");
-							// querySpan.classList.add("shake2");
-						// },10);
-						// setTimeout(function(){
-							// querySpan.classList.remove("shake0")
-							// querySpan.classList.add("shake2");
-						// },300)
-					}
+				
+				// if(space >= 0){
+					for (var s=0;s<wordNum;s++){
+						// while (wordNum < space+1){
+							var wordSpan = document.createElement("span");
+							wordSpan.setAttribute("class","queryWord");
+							wordSpan.setAttribute("id","queryWord"+s);
+							wordSpan.setAttribute("display","inline-block");
+							var queryAreaElem = document.getElementById("queryArea");
+							queryAreaElem.appendChild(wordSpan);
+							
+							
+							if(s == 0){
+								p = 0;
+							}
+							else{
+								p = spaceIndex[s-1];
+							}
+							for (var sI=p;sI<spaceIndex[s];sI++){
+								var querySpan = document.createElement("span");
+								querySpan.setAttribute("class","query");
+								querySpan.setAttribute("id","query"+sI);
+								querySpan.innerHTML = a[sI];
+								if(a[sI] == " "){
+									querySpan.innerHTML = "&nbsp;"
+								}
+								
+								var wordSpanElem = document.getElementById("queryWord"+s);
+								wordSpanElem.appendChild(querySpan);
+								
+							}
+							// }
+						}
+					// }
 					
-					var queryAreaElem = document.getElementById("queryArea");
-					queryAreaElem.appendChild(querySpan);
-				}
+					for (var qsA=0;qsA<wordLength;qsA++){
+						if (a[qsA] == enteredKey){
+							matchedSpan[ms++] = qsA;
+							
+						}
+					}
 				
 				if (matchedSpan.length > 0){
+				
 					for (var msl=0;msl<matchedSpan.length;msl++){
 						var mSpan = document.getElementById("query"+matchedSpan[msl]);
 						mSpan.classList.add("shake1");
@@ -343,15 +435,37 @@ var compare=function(word,enteredKey,ran) {
 						querySpanArea.removeChild(querySpanArea.firstChild);
 					}
 					wordLength = completeWord[ran].length;
-					for (var qs=0;qs<wordLength;qs++){
-						var querySpan = document.createElement("span");
-						querySpan.setAttribute("class","query");
-						querySpan.setAttribute("id","query"+qs);
-						querySpan.innerHTML = inWord[qs];
-						
-						var queryAreaElem = document.getElementById("queryArea");
-						queryAreaElem.appendChild(querySpan);
-					}
+					for (var s=0;s<wordNum;s++){
+						// while (wordNum < space+1){
+							var wordSpan = document.createElement("span");
+							wordSpan.setAttribute("class","queryWord");
+							wordSpan.setAttribute("id","queryWord"+s);
+							wordSpan.setAttribute("display","inline-block");
+							var queryAreaElem = document.getElementById("queryArea");
+							queryAreaElem.appendChild(wordSpan);
+							
+							
+							if(s == 0){
+								p = 0;
+							}
+							else{
+								p = spaceIndex[s-1];
+							}
+							for (var sI=p;sI<spaceIndex[s];sI++){
+								var querySpan = document.createElement("span");
+								querySpan.setAttribute("class","query");
+								querySpan.setAttribute("id","query"+sI);
+								querySpan.innerHTML = inWord[sI];
+								if(inWord[sI] == " "){
+									querySpan.innerHTML = "&nbsp;"
+								}
+								
+								var wordSpanElem = document.getElementById("queryWord"+s);
+								wordSpanElem.appendChild(querySpan);
+								
+							}
+							// }
+						}
 					var keyElem = document.getElementsByClassName("keys");
 					for(var keyEle=0;keyEle<keyElem.length;keyEle++){
 						keyElem[keyEle].disabled = false;
@@ -405,21 +519,56 @@ var compare=function(word,enteredKey,ran) {
 						querySpanArea.removeChild(querySpanArea.firstChild);
 					}
 					wordLength = completeWord[ran].length;
-					for (var qs=0;qs<wordLength;qs++){
-						var querySpan = document.createElement("span");
-						querySpan.setAttribute("class","query");
-						querySpan.setAttribute("id","query"+qs);
-						if(wrongChoice == 5){
-							querySpan.innerHTML = completeWord[ran][qs];
-						}
-						else{
-							querySpan.innerHTML = charIncompleteArray[qs];
-						}
+					// for (var qs=0;qs<wordLength;qs++){
+						if(space >= 0){
+							for (var s=0;s<wordNum;s++){
+								// while (wordNum < space+1){
+									var wordSpan = document.createElement("span");
+									wordSpan.setAttribute("class","queryWord");
+									wordSpan.setAttribute("id","queryWord"+s);
+									wordSpan.setAttribute("display","inline-block");
+									var queryAreaElem = document.getElementById("queryArea");
+									queryAreaElem.appendChild(wordSpan);
+									
+									
+									if(s == 0){
+										p = 0;
+									}
+									else{
+										p = spaceIndex[s-1];
+									}
+									for (var sI=p;sI<spaceIndex[s];sI++){
+										var querySpan = document.createElement("span");
+										querySpan.setAttribute("class","query");
+										querySpan.setAttribute("id","query"+sI);
+										querySpan.innerHTML = charIncompleteArray[sI];
+										if(charIncompleteArray[sI] == " "){
+											querySpan.innerHTML = "&nbsp;"
+										}
+										
+										var wordSpanElem = document.getElementById("queryWord"+s);
+										wordSpanElem.appendChild(querySpan);
+										
+									}
+									// }
+								}
+							}
 						
 						
-						var queryAreaElem = document.getElementById("queryArea");
-						queryAreaElem.appendChild(querySpan);
-					}
+						// var querySpan = document.createElement("span");
+						// querySpan.setAttribute("class","query");
+						// querySpan.setAttribute("id","query"+qs);
+						// if(wrongChoice == 5){
+							// querySpan.innerHTML = completeWord[ran][qs];
+						// }
+						// else{
+							// querySpan.innerHTML = charIncompleteArray[qs];
+						// }
+						
+						
+						// var queryAreaElem = document.getElementById("queryArea");
+						// queryAreaElem.appendChild(querySpan);
+					// }
 				}
 				
 				// document.getElementById('query').innerHTML = charIncompleteArray.join("");
@@ -439,13 +588,48 @@ var compare=function(word,enteredKey,ran) {
 			}
 			wordLength = completeWord[ran].length;
 			for (var qs=0;qs<wordLength;qs++){
-				var querySpan = document.createElement("span");
-				querySpan.setAttribute("class","query");
-				querySpan.setAttribute("id","query"+qs);
-				querySpan.innerHTML = word[qs];
+				if(space >= 0){
+					for (var s=0;s<wordNum;s++){
+						// while (wordNum < space+1){
+							var wordSpan = document.createElement("span");
+							wordSpan.setAttribute("class","queryWord");
+							wordSpan.setAttribute("id","queryWord"+s);
+							wordSpan.setAttribute("display","inline-block");
+							var queryAreaElem = document.getElementById("queryArea");
+							queryAreaElem.appendChild(wordSpan);
+							
+							
+							if(s == 0){
+								p = 0;
+							}
+							else{
+								p = spaceIndex[s-1];
+							}
+							for (var sI=p;sI<spaceIndex[s];sI++){
+								var querySpan = document.createElement("span");
+								querySpan.setAttribute("class","query");
+								querySpan.setAttribute("id","query"+sI);
+								querySpan.innerHTML = word[qs];
+								if(word[qs] == " "){
+									querySpan.innerHTML = "&nbsp;"
+								}
+								
+								var wordSpanElem = document.getElementById("queryWord"+s);
+								wordSpanElem.appendChild(querySpan);
+								
+							}
+							// }
+						}
+					}
 				
-				var queryAreaElem = document.getElementById("queryArea");
-				queryAreaElem.appendChild(querySpan);
+				
+				// var querySpan = document.createElement("span");
+				// querySpan.setAttribute("class","query");
+				// querySpan.setAttribute("id","query"+qs);
+				// querySpan.innerHTML = word[qs];
+				
+				// var queryAreaElem = document.getElementById("queryArea");
+				// queryAreaElem.appendChild(querySpan);
 			}
 			// document.getElementById('chances').innerHTML = "You are correct!!";
 			streak++;
@@ -698,6 +882,9 @@ var compare=function(word,enteredKey,ran) {
 							querySpan.setAttribute("class","query");
 							querySpan.setAttribute("id","query"+qs);
 							querySpan.innerHTML = word[qs];
+							if(word[qs] == " "){
+								querySpan.innerHTML = "&nbsp;"
+							}
 							
 							var queryAreaElem = document.getElementById("queryArea");
 							queryAreaElem.appendChild(querySpan);
@@ -781,7 +968,7 @@ function playAgain(){
 }
 
 function registerEnteredKey(keyEntered){
-	keyEntered.setAttribute("style","-webkit-transition-timing-function:ease-in;-webkit-transition:0.1s;-webkit-transform:translateX(0%) translateY(-25%);");
+	keyEntered.setAttribute("style","transition-timing-function:ease-in;transition:0.1s;transform:translateX(0%) translateY(-25%);");
 	// playAudio("keyPressAudio");
 	setTimeout(function(){
 		keyEntered.setAttribute("style","font-size: 1.4em;");
