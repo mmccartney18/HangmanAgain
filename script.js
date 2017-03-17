@@ -38,6 +38,7 @@ var main=function(incompleteWord,completeWord) {
 	// playAudio("switchFlick");
 	ran=returnRandom();
 	// document.getElementById('query').innerHTML = incompleteWord[ran];
+	ran = 1;
 	wordLength = incompleteWord[ran].length;
 	wordNum = 1;
 	space = 0;
@@ -541,7 +542,13 @@ var compare=function(word,enteredKey,ran) {
 										var querySpan = document.createElement("span");
 										querySpan.setAttribute("class","query");
 										querySpan.setAttribute("id","query"+sI);
-										querySpan.innerHTML = charIncompleteArray[sI];
+										if(wrongChoice == 5){
+											querySpan.innerHTML = completeWord[ran][sI];
+										}
+										else{
+											querySpan.innerHTML = charIncompleteArray[sI];
+										}
+										
 										if(charIncompleteArray[sI] == " "){
 											querySpan.innerHTML = "&nbsp;"
 										}
@@ -587,7 +594,7 @@ var compare=function(word,enteredKey,ran) {
 				querySpanArea.removeChild(querySpanArea.firstChild);
 			}
 			wordLength = completeWord[ran].length;
-			for (var qs=0;qs<wordLength;qs++){
+			// for (var qs=0;qs<wordLength;qs++){
 				if(space >= 0){
 					for (var s=0;s<wordNum;s++){
 						// while (wordNum < space+1){
@@ -609,8 +616,8 @@ var compare=function(word,enteredKey,ran) {
 								var querySpan = document.createElement("span");
 								querySpan.setAttribute("class","query");
 								querySpan.setAttribute("id","query"+sI);
-								querySpan.innerHTML = word[qs];
-								if(word[qs] == " "){
+								querySpan.innerHTML = word[sI];
+								if(word[sI] == " "){
 									querySpan.innerHTML = "&nbsp;"
 								}
 								
@@ -630,7 +637,7 @@ var compare=function(word,enteredKey,ran) {
 				
 				// var queryAreaElem = document.getElementById("queryArea");
 				// queryAreaElem.appendChild(querySpan);
-			}
+			// }
 			// document.getElementById('chances').innerHTML = "You are correct!!";
 			streak++;
 			document.getElementById('current').innerHTML = streak;
@@ -877,17 +884,38 @@ var compare=function(word,enteredKey,ran) {
 							querySpanArea.removeChild(querySpanArea.firstChild);
 						}
 						wordLength = completeWord[ran].length;
-						for (var qs=0;qs<wordLength;qs++){
-							var querySpan = document.createElement("span");
-							querySpan.setAttribute("class","query");
-							querySpan.setAttribute("id","query"+qs);
-							querySpan.innerHTML = word[qs];
-							if(word[qs] == " "){
-								querySpan.innerHTML = "&nbsp;"
+						if(space >= 0){
+							for (var s=0;s<wordNum;s++){
+							// while (wordNum < space+1){
+								var wordSpan = document.createElement("span");
+								wordSpan.setAttribute("class","queryWord");
+								wordSpan.setAttribute("id","queryWord"+s);
+								wordSpan.setAttribute("display","inline-block");
+								var queryAreaElem = document.getElementById("queryArea");
+								queryAreaElem.appendChild(wordSpan);
+								
+								
+								if(s == 0){
+									p = 0;
+								}
+								else{
+									p = spaceIndex[s-1];
+								}
+								for (var sI=p;sI<spaceIndex[s];sI++){
+									var querySpan = document.createElement("span");
+									querySpan.setAttribute("class","query");
+									querySpan.setAttribute("id","query"+sI);
+									querySpan.innerHTML = word[sI];
+									if(word[sI] == " "){
+										querySpan.innerHTML = "&nbsp;"
+									}
+									
+									var wordSpanElem = document.getElementById("queryWord"+s);
+									wordSpanElem.appendChild(querySpan);
+									
+								}
+									// }
 							}
-							
-							var queryAreaElem = document.getElementById("queryArea");
-							queryAreaElem.appendChild(querySpan);
 						}
 						streak=0;
 						document.getElementById('current').innerHTML = streak;
