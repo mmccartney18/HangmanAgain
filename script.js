@@ -22,7 +22,7 @@ var playAudio = function(audioID) {
 	var audioElement = document.getElementById(audioID);
 	var url = audioElement.getAttribute('src');
 	
-	my_media = new Audio(url,
+	my_media = new Media(url,
 			// success callback
 			 function () { my_media.release(); },
 			// error callback
