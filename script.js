@@ -38,7 +38,6 @@ var main=function(incompleteWord,completeWord) {
 	// playAudio("switchFlick");
 	ran=returnRandom();
 	// document.getElementById('query').innerHTML = incompleteWord[ran];
-	ran = 1;
 	wordLength = incompleteWord[ran].length;
 	wordNum = 1;
 	space = 0;
@@ -148,6 +147,7 @@ var resetFunc = function(){
 	document.getElementById("play_area").setAttribute("style","height:64%");
 	document.getElementById("queryArea").setAttribute("style","font-size:1em");
 	document.getElementById("footer").setAttribute("style","max-height:45%;overflow:hidden");
+	document.getElementById('wrong_ans').setAttribute("style","visibility:visible");
 	ran=returnRandom();
 	blankSpace = 1;
 	incompleteArrayWord = "";
@@ -650,62 +650,57 @@ var compare=function(word,enteredKey,ran) {
 			document.getElementById('best').innerHTML = localStorage.getItem("bestS");
 			document.getElementById("keyBoard").setAttribute("style","visibility:hidden");
 			document.getElementById("chanceDiagram").setAttribute("style","visibility:hidden");
-			document.getElementById("play_area").setAttribute("style","height:97%");
-			document.getElementById("queryArea").setAttribute("style","font-size:1.8em");
-			document.getElementById("footer").setAttribute("style","max-height:15%;overflow:hidden");
-			// if (streak<maxStreak)
-				// maxStreak=maxStreak;
-			// else 
-				// maxStreak=streak;
-			// localStorage.setItem("best",Math.max(maxStreak,bestStr));
-			// document.getElementById('best').innerHTML = maxStreak;
-			document.getElementById('play_again').innerHTML = "Next";
-			// document.getElementById('play_again').classList.add("shake-slow");
-			var pAgain = document.getElementById('play_again');
-			pAgain.setAttribute("class","shake-slow1");
+			document.getElementById("play_area").setAttribute("style","visibility:hidden");
+			document.getElementById('play_again').setAttribute("style","visibility:hidden");
+			document.getElementById('wrong_ans').setAttribute("style","visibility:hidden");
 			setTimeout(function(){
-				pAgain.classList.remove("shake-slow1");
-				pAgain.classList.add("shake-slow2");
-			},50);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow2");
-				pAgain.classList.add("shake-slow3");
-			},100);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow3");
-				pAgain.classList.add("shake-slow4");
-			},150);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow4");
-				pAgain.classList.add("shake-slow1");
-			},200);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow1");
-				pAgain.classList.add("shake-slow2");
-			},250);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow2");
-				pAgain.classList.add("shake-slow3");
-			},300);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow3");
-				pAgain.classList.add("shake-slow4");
-			},350);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow4");
-				pAgain.classList.add("shake-slow1");
-			},400);
-			setTimeout(function(){
-				pAgain.classList.remove("shake-slow1");
-				pAgain.classList.add("shake-slow0");
-			},450);
-			
-			var keyElem = document.getElementsByClassName("keys");
-			for(var keyEle=0;keyEle<keyElem.length;keyEle++){
-				keyElem[keyEle].disabled = true;
-			}
-			
-			$("<div/>", {
+				document.getElementById('play_again').setAttribute("style","visibility:visible");
+				document.getElementById("play_area").setAttribute("style","visibility:visible");
+				document.getElementById("play_area").setAttribute("style","height:97%");
+				document.getElementById("queryArea").setAttribute("style","font-size:1.8em");
+				document.getElementById("footer").setAttribute("style","max-height:15%;overflow:hidden");
+				document.getElementById('play_again').innerHTML = "Next";
+				// document.getElementById('play_again').classList.add("shake-slow");
+				var pAgain = document.getElementById('play_again');
+				pAgain.setAttribute("class","shake-slow1");
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow1");
+					pAgain.classList.add("shake-slow2");
+				},50);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow2");
+					pAgain.classList.add("shake-slow3");
+				},100);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow3");
+					pAgain.classList.add("shake-slow4");
+				},150);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow4");
+					pAgain.classList.add("shake-slow1");
+				},200);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow1");
+					pAgain.classList.add("shake-slow2");
+				},250);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow2");
+					pAgain.classList.add("shake-slow3");
+				},300);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow3");
+					pAgain.classList.add("shake-slow4");
+				},350);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow4");
+					pAgain.classList.add("shake-slow1");
+				},400);
+				setTimeout(function(){
+					pAgain.classList.remove("shake-slow1");
+					pAgain.classList.add("shake-slow0");
+				},450);
+				animateState();
+				$("<div/>", {
 					id: "correctState",
 					text: "Hurray!!!You are correct",
 					// class: 'verticalM',
@@ -713,6 +708,22 @@ var compare=function(word,enteredKey,ran) {
 					// style: "height: '400px',margin-top= 0px",
 					// width: '70px',
 			}).appendTo(document.getElementById("game_area"));
+			}, 500);
+			
+			// if (streak<maxStreak)
+				// maxStreak=maxStreak;
+			// else 
+				// maxStreak=streak;
+			// localStorage.setItem("best",Math.max(maxStreak,bestStr));
+			// document.getElementById('best').innerHTML = maxStreak;
+			
+			
+			var keyElem = document.getElementsByClassName("keys");
+			for(var keyEle=0;keyEle<keyElem.length;keyEle++){
+				keyElem[keyEle].disabled = true;
+			}
+			
+			
 			
 			t = 0;
 			h = 5;
@@ -720,17 +731,17 @@ var compare=function(word,enteredKey,ran) {
 			// while (time < 1100){
 				function animateState(){
 					setTimeout(function(){
-						t -= 1;
-						h += 0.1;
+						t -= 2;
+						h += 0.15;
 						document.getElementById("correctState").setAttribute("style","color:#ffffff;margin-top:"+ t + "px;"+"font-family: myFirstFont;font-size:"+h+"px");
-						time += 7;
+						time += 12;
 						if (time < 2150){
 							animateState();
 						}
-					},10);
+					},20);
 				}
 				
-			animateState();
+			
 				
 			// }
 			// var correctStatement = document.createElement("span");
