@@ -143,6 +143,11 @@ var returnRandom= function() {
  }
 
 var resetFunc = function(){
+	document.getElementById("keyBoard").setAttribute("style","visibility:visible");
+	document.getElementById("chanceDiagram").setAttribute("style","visibility:visible");
+	document.getElementById("play_area").setAttribute("style","height:64%");
+	document.getElementById("queryArea").setAttribute("style","font-size:1em");
+	document.getElementById("footer").setAttribute("style","max-height:45%;overflow:hidden");
 	ran=returnRandom();
 	blankSpace = 1;
 	incompleteArrayWord = "";
@@ -643,6 +648,11 @@ var compare=function(word,enteredKey,ran) {
 			document.getElementById('current').innerHTML = streak;
 			localStorage.setItem("bestS",Math.max(streak,bestStr));
 			document.getElementById('best').innerHTML = localStorage.getItem("bestS");
+			document.getElementById("keyBoard").setAttribute("style","visibility:hidden");
+			document.getElementById("chanceDiagram").setAttribute("style","visibility:hidden");
+			document.getElementById("play_area").setAttribute("style","height:97%");
+			document.getElementById("queryArea").setAttribute("style","font-size:1.8em");
+			document.getElementById("footer").setAttribute("style","max-height:15%;overflow:hidden");
 			// if (streak<maxStreak)
 				// maxStreak=maxStreak;
 			// else 
@@ -711,10 +721,10 @@ var compare=function(word,enteredKey,ran) {
 				function animateState(){
 					setTimeout(function(){
 						t -= 1;
-						h += 0.2;
+						h += 0.1;
 						document.getElementById("correctState").setAttribute("style","color:#ffffff;margin-top:"+ t + "px;"+"font-family: myFirstFont;font-size:"+h+"px");
-						time += 11;
-						if (time < 1750){
+						time += 7;
+						if (time < 2150){
 							animateState();
 						}
 					},10);
