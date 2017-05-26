@@ -33,6 +33,30 @@ var playAudio = function(audioID) {
 }
 
 var main=function(incompleteWord,completeWord) {
+	var headEle = document.getElementById("header");
+	var wrapEle = document.getElementById("wrapper");
+	var wrapWidth = wrapEle.offsetWidth;
+	var lettWidth = 0.08 * wrapWidth;
+	headEle.setAttribute("style","letter-spacing:"+lettWidth+"px");
+	var queryString = new Array();
+		var query = window.location.search.split('?')[1];
+		var cat = query.split('=')[1];
+		
+		if (cat == "1"){
+			headEle.innerHTML = "BOLLYWOOD"
+		}
+		if (cat == "2"){
+			headEle.innerHTML = "HOLLYWOOD"
+		}
+		if (cat == "3"){
+			headEle.innerHTML = "SPORTSMAN"
+		}
+		if (cat == "4"){
+			headEle.innerHTML = "PLACES"
+		}
+		if (cat == "5"){
+			headEle.innerHTML = "AUTHOR"
+		}
 	// var enteredKey;
 	// playAudio("playAgainAudio");
 	// playAudio("switchFlick");
@@ -142,6 +166,30 @@ var returnRandom= function() {
  }
 
 var resetFunc = function(){
+	var headEle = document.getElementById("header");
+	var wrapEle = document.getElementById("wrapper");
+	var wrapWidth = wrapEle.offsetWidth;
+	var lettWidth = 0.08 * wrapWidth;
+	headEle.setAttribute("style","letter-spacing:"+lettWidth+"px");
+	var queryString = new Array();
+		var query = window.location.search.split('?')[1];
+		var cat = query.split('=')[1];
+		
+		if (cat == "1"){
+			headEle.innerHTML = "BOLLYWOOD"
+		}
+		if (cat == "2"){
+			headEle.innerHTML = "HOLLYWOOD"
+		}
+		if (cat == "3"){
+			headEle.innerHTML = "SPORTSMAN"
+		}
+		if (cat == "4"){
+			headEle.innerHTML = "PLACES"
+		}
+		if (cat == "5"){
+			headEle.innerHTML = "AUTHOR"
+		}
 	document.getElementById("keyBoard").setAttribute("style","visibility:visible");
 	document.getElementById("chanceDiagram").setAttribute("style","visibility:visible");
 	document.getElementById("play_area").setAttribute("style","height:64%");

@@ -100,7 +100,7 @@ function hollywoodList(){
 	list.push({incompWord: "__I__E_ O_ _E__E_",
 		compWord: "CHILDREN OF HEAVEN"});
 		
-	list.push({incompWord: "_H_ __E_T E___PE",
+	list.push({incompWord: "_HE __E_T E___PE",
 		compWord: "THE GREAT ESCAPE"});
 		
 	list.push({incompWord: "T_E _E__E_ __ T_E__ E_E_",
